@@ -5,6 +5,13 @@ const bodyParser = require('body-parser');
 const app = express();
 
 // Configurar a conexão com o banco de dados MySQL
+
+//const é um tipo de variável que se mantem inalteravel
+//db é o nome escolhido para essa varivavel
+//host é o local onde esse banco de dados está
+//user é o usuário do banco de ados
+//database é qual base de dados (obs: n/ confundir com tabela) a ser utilizada;
+
 const db = mysql.createConnection({
 host: 'localhost',
 user: 'phpmyadmin',
@@ -12,6 +19,8 @@ password: 'aluno',
 database: 'mydb',
 });
 
+
+//proxima parte trata apenas de um codigo que verifica se deu certo ou n a conexão com o banco de dados
 db.connect((err) => {
 if (err) {
 console.error('Erro ao conectar ao banco de dados:', err);
@@ -21,6 +30,7 @@ console.log('Conexão com o banco de dados MySQL estabelecida.');
 });
 
 // Configurar a sessão
+//usando a variavel app e possivel quando recarregar a página manter as informações do arquivo ejs padronizadas
 app.use(
 session({
 secret: 'sua_chave_secreta',
@@ -29,6 +39,8 @@ saveUninitialized: true,
 })
 );
 
+
+//
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // Configurar EJS como o motor de visualização
